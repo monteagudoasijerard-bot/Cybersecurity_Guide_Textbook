@@ -143,9 +143,9 @@ For example:
 The same networking principles apply, but the design becomes more sophisticated.
 ________________________________________
 Types of Networks
-Type	Description	Example
-PAN	Personal Area Network	Bluetooth earbuds
-LAN	Local Area Network	Home Wi-Fi
+Type	Description	                  Example
+PAN	Personal Area Network	      Bluetooth earbuds
+LAN	Local Area Network	      Home Wi-Fi
 WLAN	Wireless Local Area Network	Coffee shop Wi-Fi
 MAN	Metropolitan Area Network	City-wide network
 WAN	Wide Area Network	Internet
