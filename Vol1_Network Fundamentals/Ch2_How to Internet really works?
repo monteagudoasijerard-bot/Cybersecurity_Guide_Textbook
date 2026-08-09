@@ -1,0 +1,847 @@
+Networking Fundamentals: From Zero to Professional Network Engineer
+Chapter 2 – How the Internet Really Works
+Part 1 – The Journey of a Web Request
+________________________________________
+Learning Objectives
+By the end of this part, you will be able to:
+•	Explain what happens when you open a website.
+•	Understand the roles of a browser, DNS, routers, and web servers.
+•	Describe the path data takes across the Internet.
+•	Recognize why each networking component is necessary.
+•	Relate this process to cybersecurity and troubleshooting.
+Estimated Study Time: 2–3 hours
+Prerequisites: Chapter 1 – What Is a Computer Network?
+________________________________________
+Introduction
+Every day, billions of people type website addresses like:
+•	google.com
+•	youtube.com
+•	amazon.com
+Most people think pressing Enter instantly loads a webpage.
+In reality, dozens of networking processes occur in less than a second.
+Understanding this journey is one of the most important skills in networking and cybersecurity.
+Whenever a website doesn't load, a network engineer mentally follows this exact journey to determine where the problem occurred.
+________________________________________
+Scenario
+Suppose you type:
+https://www.google.com
+and press Enter.
+Have you ever wondered...
+•	How does your computer know where Google is?
+•	How does it find Google's servers?
+•	Why does the page load so quickly?
+•	What happens if something goes wrong?
+We'll answer all of those questions.
+________________________________________
+The Big Picture
+Here is the complete journey.
+You
+ │
+ ▼
+Web Browser
+ │
+ ▼
+Operating System
+ │
+ ▼
+Wi-Fi / Ethernet
+ │
+ ▼
+Home Router
+ │
+ ▼
+Internet Service Provider (ISP)
+ │
+ ▼
+Internet
+ │
+ ▼
+Google's Servers
+ │
+ ▼
+Response Returns
+ │
+ ▼
+Browser Displays Webpage
+Each box performs a specific job.
+Let's study them one by one.
+________________________________________
+Step 1 – You Enter a Website Address
+Suppose you type:
+https://www.google.com
+This is called a URL.
+________________________________________
+Definition
+URL (Uniform Resource Locator)
+A URL is the complete address of a resource on the Internet.
+Example:
+https://www.google.com/search?q=networking
+A URL tells your browser:
+•	Which protocol to use (HTTPS)
+•	Which server to contact (www.google.com)
+•	Which resource to request (/search)
+•	Additional information (the query)
+________________________________________
+Analogy
+Imagine ordering food.
+You must provide:
+•	Restaurant
+•	Address
+•	Order
+A URL is like the complete delivery address.
+________________________________________
+Step 2 – The Browser Receives Your Request
+The browser (Chrome, Firefox, Edge, Safari, etc.) begins preparing the request.
+The browser asks:
+"I know the website's name...
+But where is it located?"
+The browser cannot send information using names.
+Computers communicate using numbers.
+________________________________________
+Why?
+Humans remember:
+google.com
+Computers prefer:
+142.250.190.78
+These numerical addresses are called IP addresses, which we'll explore in depth in the next chapter.
+________________________________________
+Step 3 – Browser Cache
+Before asking anyone else, the browser checks its memory.
+This temporary storage is called the browser cache.
+If you've visited the website recently, your browser may already know its IP address.
+This saves time.
+________________________________________
+Why Caching Exists
+Imagine asking someone for your friend's phone number every day.
+Eventually, you would memorize it.
+Computers do the same.
+Caching reduces unnecessary work and speeds up browsing.
+________________________________________
+Step 4 – Operating System Cache
+If the browser doesn't know the answer, it asks the operating system.
+Windows, Linux, and macOS also remember recently used addresses.
+Again, this speeds up communication.
+________________________________________
+Step 5 – DNS
+If neither the browser nor the operating system knows the IP address, the computer asks a DNS server.
+DNS stands for:
+Domain Name System
+DNS is often called the phonebook of the Internet.
+________________________________________
+Definition
+DNS
+A distributed system that translates human-readable names into IP addresses.
+Example:
+google.com
+↓
+142.250.xxx.xxx
+Without DNS, every website would need to be remembered by its numerical IP address.
+________________________________________
+Analogy
+Imagine looking up a person's name in your phone contacts.
+You remember:
+Alice
+Your phone remembers:
+0917-123-4567
+DNS performs the same translation for computers.
+________________________________________
+Real-World Example
+You type:
+youtube.com
+DNS replies:
+142.xxx.xxx.xxx
+Now your computer finally knows where to send the request.
+________________________________________
+Why DNS Is Important
+Without DNS:
+•	Every website would require memorizing numbers.
+•	The Internet would be much harder to use.
+•	Businesses couldn't easily change server IP addresses without informing every user.
+________________________________________
+Step 6 – Creating the Request
+Now your computer prepares a message.
+This message contains information such as:
+•	Destination IP address
+•	Your IP address
+•	Requested webpage
+•	Security information (for HTTPS)
+•	Browser details
+Think of it as placing a letter inside an envelope with both the sender's and recipient's addresses.
+________________________________________
+Data Is Split into Packets
+Large messages are not sent as one huge block.
+Instead, they are divided into many smaller pieces called packets.
+Example:
+Large File
+↓
+Packet 1
+Packet 2
+Packet 3
+Packet 4
+Packet 5
+...
+Each packet travels independently and is reassembled at the destination.
+This improves speed and reliability.
+________________________________________
+Why Packets?
+Imagine moving an entire house.
+Would you move everything in one trip?
+No.
+You would pack items into many boxes.
+If one box is delayed, the others can still arrive.
+Networks work the same way.
+________________________________________
+Key Takeaways
+•	A URL is a human-friendly address.
+•	Computers communicate using IP addresses.
+•	Browsers and operating systems use caches to speed up browsing.
+•	DNS translates names into IP addresses.
+•	Data is divided into packets before transmission.
+________________________________________
+Memory Tips
+URL
+The address you type.
+DNS
+The Internet's phonebook.
+Cache
+Temporary memory used to speed things up.
+Packet
+A small piece of data sent across a network.
+________________________________________
+Self-Assessment
+Without looking back, answer these questions:
+1.	Why can't computers use website names directly?
+2.	What is the purpose of DNS?
+3.	Why are packets used instead of sending one large file?
+4.	Why does caching make browsing faster?
+5.	What information does a URL provide?
+________________________________________
+Mini Lab – Observe DNS in Action
+Objective: See how your computer translates a website name into an IP address.
+Windows
+Open Command Prompt and type:
+nslookup google.com
+Linux/macOS
+Open Terminal and type:
+nslookup google.com
+If nslookup isn't installed on Linux, you can also use:
+dig google.com
+Observe
+Write down:
+•	The website name
+•	The IP address returned
+•	The DNS server used for the lookup
+Challenge
+Repeat the command for:
+•	youtube.com
+•	github.com
+•	openai.com
+Compare the IP addresses. Notice that different websites have different IP addresses, and sometimes the same website can return different IPs due to load balancing.
+________________________________________
+Common Mistakes
+•	Thinking the browser "knows" every website's address permanently.
+•	Believing DNS stores website content (it only translates names to IP addresses).
+•	Assuming a URL and an IP address are the same thing.
+•	Thinking data is always sent as one large block instead of many packets.
+________________________________________
+Interview Preparation
+Beginner
+Question: What is DNS?
+Why it's asked: DNS is one of the most fundamental networking concepts.
+Ideal Answer: DNS (Domain Name System) translates human-readable domain names, such as google.com, into IP addresses that computers use to communicate.
+Difficulty: 2/10
+________________________________________
+Coming Up in Part 2
+In the next part, you'll follow those packets as they travel through:
+•	Your Network Interface Card (NIC)
+•	Ethernet and Wi-Fi
+•	Your home router
+•	Your Internet Service Provider (ISP)
+•	Multiple routers across the Internet
+•	Google's data center
+You'll also learn why packets don't always take the same path and how the Internet keeps working even when some connections fail.
+
+
+Networking Fundamentals: From Zero to Professional Network Engineer
+Chapter 2 – How the Internet Really Works
+Part 2 – The Journey Across the Internet
+________________________________________
+Learning Objectives
+By the end of this part, you will be able to:
+•	Explain how data leaves your computer.
+•	Understand the role of the Network Interface Card (NIC).
+•	Describe how switches, routers, and Internet Service Providers (ISPs) forward packets.
+•	Explain why packets may take different routes.
+•	Understand the concept of routing and redundancy.
+________________________________________
+Review of Part 1
+In Part 1, you learned that:
+1.	You typed a URL.
+2.	The browser checked its cache.
+3.	The operating system checked its cache.
+4.	DNS translated the domain name into an IP address.
+5.	Your computer prepared the request.
+6.	The request was divided into packets.
+Now we will follow those packets as they travel across the Internet.
+________________________________________
+The Journey Begins
+Imagine your packet is a traveler.
+It has:
+•	A destination (Google's server)
+•	A return address (your computer)
+•	Instructions on where it needs to go
+Its job is simple:
+Reach the destination as efficiently and reliably as possible.
+________________________________________
+Step 7 – The Network Interface Card (NIC)
+Before your computer can send anything, it needs hardware that can communicate with a network.
+This hardware is called the Network Interface Card (NIC).
+Definition
+A Network Interface Card (NIC) is a hardware component that connects a device to a network.
+Examples:
+•	Ethernet port
+•	Wi-Fi adapter
+•	USB Wi-Fi dongle
+•	Built-in wireless card on a laptop
+Without a NIC, a computer cannot communicate with other devices.
+________________________________________
+Real-World Example
+When you connect your laptop to Wi-Fi:
+Laptop
+→ Wi-Fi Adapter (NIC)
+→ Router
+When using an Ethernet cable:
+Laptop
+→ Ethernet NIC
+→ Switch or Router
+________________________________________
+Why Is a NIC Important?
+The NIC:
+•	Sends data.
+•	Receives data.
+•	Converts digital information into signals that can travel through cables or wireless radio waves.
+•	Has its own unique identifier called a MAC Address (covered in a later chapter).
+________________________________________
+Step 8 – Data Leaves Your Computer
+Your NIC transmits packets to the next device.
+Depending on your connection, this may be:
+•	A Wi-Fi Access Point
+•	A Home Router
+•	A Network Switch
+Think of the NIC as the front door of your house.
+Every package entering or leaving must pass through it.
+________________________________________
+Step 9 – The Home Router
+Your home router is one of the most important devices in your network.
+Its main job is to connect:
+Your Home Network ↔ The Internet
+A router makes forwarding decisions.
+It examines the destination IP address and determines the next hop.
+________________________________________
+Analogy
+Imagine driving to another city.
+At each major intersection, road signs tell you which direction to go.
+Routers work similarly.
+They don't know every street in the world, but they know where to send traffic next.
+________________________________________
+Router vs. Switch
+Switch	Router
+Connects devices within the same local network	Connects different networks
+Uses MAC addresses	Uses IP addresses
+Operates inside a LAN	Connects LANs to WANs
+________________________________________
+Step 10 – Your Internet Service Provider (ISP)
+After leaving your router, packets reach your ISP.
+Examples of ISPs include companies that provide your home Internet connection.
+The ISP owns large networking equipment that forwards traffic toward its destination.
+Without an ISP, your home network would remain isolated from the global Internet.
+________________________________________
+The Internet Is Not One Giant Network
+Many beginners imagine the Internet as one enormous network.
+In reality, it is a network of networks.
+Thousands of organizations connect their own networks together.
+These include:
+•	ISPs
+•	Universities
+•	Governments
+•	Cloud providers
+•	Businesses
+•	Content Delivery Networks (CDNs)
+Together, they form the Internet.
+________________________________________
+Step 11 – Routers Across the Internet
+Your packet doesn't travel directly to Google.
+Instead, it passes through many routers.
+Example:
+Your Laptop
+      │
+      ▼
+Home Router
+      │
+      ▼
+ISP Router
+      │
+      ▼
+Regional Router
+      │
+      ▼
+National Backbone
+      │
+      ▼
+International Backbone
+      │
+      ▼
+Google Network
+      │
+      ▼
+Google Server
+Each router makes a forwarding decision.
+This usually takes only milliseconds.
+________________________________________
+What Is Routing?
+Routing is the process of selecting a path for data to travel across networks.
+Routers compare available paths and choose where to forward packets.
+Later in this course, you'll study routing protocols such as:
+•	RIP
+•	OSPF
+•	EIGRP
+•	BGP
+These protocols help routers share information about the best available paths.
+________________________________________
+Why Don't Packets Always Follow the Same Route?
+Imagine two roads leading to the same destination.
+One road has heavy traffic.
+The other is clear.
+GPS may choose the faster road.
+Internet routing works similarly.
+Packets may travel along different paths because of:
+•	Congestion
+•	Equipment failures
+•	Maintenance
+•	Load balancing
+•	Policy decisions
+This makes the Internet resilient.
+________________________________________
+Redundancy
+Suppose a fiber-optic cable is accidentally cut.
+Does the entire Internet stop working?
+Usually not.
+Routers detect unavailable paths and send traffic through alternative routes.
+This is called redundancy.
+Redundancy is a key reason why the Internet remains available despite hardware failures.
+________________________________________
+Real-World Example
+A construction crew accidentally damages an underground fiber cable.
+Traffic that previously used that cable is automatically redirected through another route.
+Users may notice a slight delay, but communication continues.
+________________________________________
+Practical Application
+As a Network Security Engineer, understanding packet paths helps you:
+•	Diagnose connectivity issues.
+•	Identify routing problems.
+•	Design resilient networks.
+•	Investigate suspicious traffic.
+•	Configure secure network architectures.
+________________________________________
+Mini Lab – Trace the Path to a Website
+Objective
+Discover how many network devices your traffic passes through.
+Windows
+Open Command Prompt:
+tracert google.com
+Linux/macOS
+Open Terminal:
+traceroute google.com
+(If traceroute isn't installed, install it using your package manager.)
+Observe
+Write down:
+•	Number of hops
+•	Response times
+•	Which hop belongs to your home router
+•	Which hop likely belongs to your ISP
+Challenge
+Run the command for:
+•	github.com
+•	youtube.com
+•	cloudflare.com
+Compare the routes. They may differ because the Internet dynamically selects paths.
+________________________________________
+Common Mistakes
+•	Thinking packets travel in a straight line.
+•	Assuming the Internet is owned by one company.
+•	Believing every packet always follows the same route.
+•	Confusing routers with switches.
+________________________________________
+Memory Tips
+NIC
+The network door of your computer.
+Router
+Chooses the next road.
+ISP
+Connects your local network to the Internet.
+Routing
+Choosing the best available path.
+Redundancy
+Having backup routes when something fails.
+________________________________________
+Interview Preparation
+Beginner
+Question: What is the purpose of a router?
+Why it's asked: Routers are one of the most important networking devices.
+Ideal Answer: A router connects different networks and forwards packets toward their destination using IP addresses.
+Difficulty: 2/10
+________________________________________
+Intermediate
+Question: Why might packets to the same website take different paths?
+Why it's asked: Tests your understanding of routing, load balancing, and redundancy.
+Ideal Answer: Routers dynamically choose paths based on network conditions, policies, failures, or congestion. Therefore, packets may take different routes while still reaching the same destination.
+Difficulty: 4/10
+________________________________________
+Career Connection
+Understanding routing is essential for:
+•	Network Engineers designing reliable networks.
+•	Network Security Engineers troubleshooting traffic flow and enforcing security policies.
+•	Cloud Engineers connecting on-premises networks to cloud environments.
+•	Ethical Hackers mapping networks during reconnaissance.
+•	SOC Analysts tracing suspicious network activity.
+•	Incident Responders determining where communication failed during an attack.
+________________________________________
+Looking Ahead
+In Chapter 2 – Part 3, you'll finally arrive at the destination:
+•	What happens inside Google's data center?
+•	How does HTTPS protect your data?
+•	How does the server process your request?
+•	How is the webpage returned to your browser?
+•	Why can websites load in less than a second?
+You'll also complete Chapter 2 with a comprehensive review, full lab, interview preparation, quiz, and certification tips. 
+
+
+Networking Fundamentals: From Zero to Professional Network Engineer
+Chapter 2 – How the Internet Really Works
+Part 3 – The Server Responds and the Webpage Appears
+________________________________________
+Learning Objectives
+By the end of this part, you will be able to:
+•	Explain what happens after your request reaches a web server.
+•	Understand the purpose of HTTPS and encryption.
+•	Describe how the server processes a request.
+•	Explain how data returns to your browser.
+•	Understand why webpages load quickly.
+•	Complete the entire journey of a web request.
+________________________________________
+Review
+So far, we've followed your request from your computer to the Internet.
+The journey looked like this:
+You
+│
+▼
+Browser
+│
+▼
+DNS
+│
+▼
+NIC
+│
+▼
+Home Router
+│
+▼
+ISP
+│
+▼
+Internet
+│
+▼
+Google's Network
+Now let's see what happens when your request finally arrives at Google's servers.
+________________________________________
+Step 12 – Arriving at the Destination
+Eventually, your packets reach Google's data center.
+A data center is a building that contains thousands—or even hundreds of thousands—of servers working together.
+Instead of one computer serving Google Search, Google operates many servers around the world to handle billions of requests every day.
+________________________________________
+What Is a Server?
+A server is a computer that provides services or resources to other computers over a network.
+Examples include:
+•	Web servers
+•	Email servers
+•	File servers
+•	Database servers
+•	Game servers
+Your laptop is usually a client, while Google's computers act as servers.
+________________________________________
+Step 13 – The Server Receives the Request
+The web server receives your request and checks what you're asking for.
+For example:
+GET /
+This tells the server:
+"Please send me the homepage."
+The server may also check:
+•	Is the request valid?
+•	Is the page available?
+•	Does the user need to log in?
+•	Is the request suspicious?
+________________________________________
+Security Check
+Modern websites perform many security checks before sending data.
+Examples include:
+•	Blocking malicious traffic.
+•	Detecting bots.
+•	Preventing denial-of-service attacks.
+•	Verifying encrypted connections.
+Cybersecurity professionals help design and maintain these protections.
+________________________________________
+Step 14 – HTTPS Protects Your Data
+Most websites today use:
+HTTPS
+Instead of:
+HTTP
+________________________________________
+What Is HTTPS?
+HTTPS stands for:
+Hypertext Transfer Protocol Secure
+It protects communication between your browser and the web server.
+________________________________________
+Why Is HTTPS Important?
+Imagine sending a postcard.
+Anyone who handles it can read the message.
+Now imagine placing that message inside a locked box.
+Only the intended recipient has the key.
+HTTPS works like the locked box.
+It encrypts your communication so that other people on the network cannot easily read or alter it.
+________________________________________
+Example
+Without HTTPS:
+Your Password
+↓
+Internet
+↓
+Anyone intercepting the traffic may be able to read it.
+With HTTPS:
+Encrypted Data
+↓
+Internet
+↓
+Anyone intercepting the traffic sees unreadable encrypted information.
+Later in this course, you'll learn about encryption algorithms and digital certificates in much greater detail.
+________________________________________
+Step 15 – The Server Creates a Response
+After processing your request, the server prepares a response.
+For a webpage, this often includes:
+•	HTML (structure)
+•	CSS (design)
+•	JavaScript (interactivity)
+•	Images
+•	Videos
+•	Fonts
+These files are packaged into packets and sent back across the Internet.
+________________________________________
+Step 16 – The Return Journey
+The response travels back through routers and networks.
+Interestingly, the return path may not be exactly the same as the outgoing path.
+The Internet continuously chooses efficient routes based on current network conditions.
+________________________________________
+Step 17 – Reassembling the Packets
+Remember that the server sent many packets.
+Your computer collects them and puts them back together in the correct order.
+Think of receiving a jigsaw puzzle.
+Each piece arrives separately, but together they form the complete picture.
+________________________________________
+Step 18 – Rendering the Webpage
+Once your browser has all the required files, it begins rendering the webpage.
+This means it:
+•	Builds the page structure.
+•	Applies colors and styles.
+•	Runs JavaScript.
+•	Displays images.
+•	Makes the webpage interactive.
+What you see on your screen is the result of all these processes working together in just a fraction of a second.
+________________________________________
+Why Is It So Fast?
+Several technologies make modern websites feel almost instant:
+•	Browser caching
+•	DNS caching
+•	High-speed fiber networks
+•	Powerful servers
+•	Content Delivery Networks (CDNs)
+•	Efficient routing
+•	Optimized browsers
+Many popular websites also store copies of their content in data centers close to users, reducing travel time.
+________________________________________
+The Complete Journey
+You Type URL
+      │
+      ▼
+Browser
+      │
+      ▼
+Browser Cache
+      │
+      ▼
+Operating System Cache
+      │
+      ▼
+DNS Lookup
+      │
+      ▼
+NIC
+      │
+      ▼
+Home Router
+      │
+      ▼
+ISP
+      │
+      ▼
+Internet Routers
+      │
+      ▼
+Destination Server
+      │
+      ▼
+Server Processes Request
+      │
+      ▼
+HTTPS Response
+      │
+      ▼
+Internet
+      │
+      ▼
+Your Computer
+      │
+      ▼
+Browser Displays Webpage
+Congratulations—you now understand the complete life cycle of a typical web request.
+________________________________________
+Real-World Case Study
+Problem: Employees in a company reported that the company website was loading very slowly.
+Investigation:
+The network engineer checked:
+1.	DNS resolution
+2.	Internet connectivity
+3.	Router performance
+4.	Server response time
+The problem turned out to be an overloaded web server.
+Solution:
+The company added additional servers and distributed traffic using a load balancer.
+Result:
+Page loading times improved significantly.
+________________________________________
+Hands-on Lab
+Lab 2 – Observe a Secure Website
+Objective
+Observe a secure HTTPS connection using your browser.
+Steps
+1.	Open your browser.
+2.	Visit:
+o	https://www.google.com
+o	https://www.wikipedia.org
+3.	Look for the padlock icon in the address bar.
+4.	Click the padlock.
+5.	View the certificate information (your browser's exact menus may differ).
+Questions
+•	Which organization issued the certificate?
+•	Is the connection encrypted?
+•	What happens if you visit a site that doesn't use HTTPS?
+________________________________________
+Lab Challenge
+Use Wireshark (if installed) to capture network traffic while loading a website.
+Can you read your password in plain text?
+If the website uses HTTPS correctly, you should not see your password in readable form.
+We'll learn packet analysis with Wireshark in a later chapter.
+________________________________________
+Common Mistakes
+•	Believing HTTPS makes a website automatically safe. (HTTPS encrypts data in transit but does not guarantee the website itself is trustworthy.)
+•	Thinking the browser downloads only one file. Most webpages consist of many files.
+•	Assuming the same Internet route is always used.
+•	Confusing encryption with compression.
+________________________________________
+Best Practices
+•	Always verify the website address before entering sensitive information.
+•	Prefer HTTPS websites.
+•	Keep your browser updated.
+•	Avoid ignoring browser security warnings.
+•	Learn to use browser developer tools for troubleshooting.
+________________________________________
+Chapter 2 Summary
+In this chapter, you learned:
+•	How a browser processes a URL.
+•	The role of caches.
+•	How DNS translates names into IP addresses.
+•	How packets travel across networks.
+•	The purpose of routers and ISPs.
+•	What happens inside a data center.
+•	Why HTTPS protects communication.
+•	How servers respond.
+•	How browsers build webpages.
+You now understand the complete journey of a request from your keyboard to a web server and back.
+________________________________________
+Interview Preparation
+Beginner
+Question: What happens after you type a URL into a browser?
+Why it's asked: Tests your understanding of the overall process.
+Ideal Answer: Explain the sequence: URL → Cache → DNS → Router → ISP → Internet → Server → Response → Browser.
+Difficulty: 3/10
+________________________________________
+Intermediate
+Question: Why is HTTPS preferred over HTTP?
+Ideal Answer: HTTPS encrypts communication between the client and server, helping protect data from eavesdropping and tampering while in transit.
+Difficulty: 5/10
+________________________________________
+Advanced
+Question: A user reports that every website is slow except one. How would you troubleshoot the issue?
+What the interviewer is looking for:
+•	Logical troubleshooting.
+•	Understanding of DNS, routing, server performance, and browser behavior.
+•	Ability to isolate whether the problem is local, network-related, or server-side.
+Difficulty: 7/10
+________________________________________
+Certification Mapping
+This chapter introduces concepts that appear in:
+•	CompTIA Network+
+•	Cisco CCNA
+•	CompTIA Security+
+•	AWS Cloud Practitioner (basic networking concepts)
+________________________________________
+Quiz
+Multiple Choice
+1.	Which protocol encrypts web traffic?
+o	A. HTTP
+o	B. FTP
+o	C. HTTPS
+o	D. SMTP
+2.	What translates a domain name into an IP address?
+o	A. DHCP
+o	B. DNS
+o	C. NAT
+o	D. ARP
+True or False
+1.	A browser usually downloads only one file when loading a webpage.
+2.	HTTPS encrypts data while it travels across the network.
+Answers
+1.	C
+2.	B
+3.	False
+4.	True
+________________________________________
+Career Connection
+Understanding this process is essential because:
+•	Network Engineers troubleshoot where communication fails.
+•	Network Security Engineers secure every stage of the journey.
+•	Cloud Engineers design reliable web services.
+•	SOC Analysts investigate suspicious network traffic.
+•	Ethical Hackers analyze how requests and responses can be manipulated during attacks.
+________________________________________
+What's Next?
+In Chapter 3 – IP Addresses, you'll learn the language computers actually use to communicate.
+You'll answer questions such as:
+•	What is an IP address?
+•	Why does every device need one?
+•	What's the difference between IPv4 and IPv6?
+•	What are public and private IP addresses?
+•	Why do some devices have the same public IP?
+•	How does NAT work?
+These concepts are foundational for every networking and cybersecurity career.
+ 
