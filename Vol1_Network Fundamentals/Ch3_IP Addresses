@@ -1,0 +1,929 @@
+Networking Fundamentals: From Zero to Professional Network Engineer
+Chapter 3 – IP Addresses
+Part 1 – The Language of Computer Networks
+________________________________________
+Learning Objectives
+By the end of this part, you will be able to:
+•	Define an IP address.
+•	Explain why every device needs an IP address.
+•	Distinguish between IP addresses and MAC addresses.
+•	Understand IPv4 and IPv6 at a high level.
+•	Explain why computers use numbers instead of names.
+•	Recognize public and private IP addresses.
+Estimated Study Time: 2–3 hours
+Prerequisites:
+•	Chapter 1 – What Is a Computer Network?
+•	Chapter 2 – How the Internet Really Works
+________________________________________
+Chapter Review
+In the previous chapter, you learned that when you typed:
+https://www.google.com
+DNS translated the domain name into something like:
+142.250.xxx.xxx
+That number is called an IP address.
+But what exactly is an IP address?
+Why does every device need one?
+That's what we'll answer in this chapter.
+________________________________________
+Imagine Delivering a Letter
+Suppose you want to send a birthday card to your friend.
+Would writing only:
+John
+be enough?
+Of course not.
+There are millions of people named John.
+You need an address like:
+John Smith
+123 Rizal Street
+Lipa City
+Batangas
+Philippines
+Now the postal service knows exactly where to deliver the letter.
+Computer networks work the same way.
+________________________________________
+What Is an IP Address?
+Definition
+An Internet Protocol (IP) Address is a unique numerical address assigned to a device on a network.
+Its purpose is to identify a device so that information can be sent to the correct destination.
+Think of it as a home's mailing address—but for computers.
+________________________________________
+Why Do We Need IP Addresses?
+Imagine millions of computers connected together.
+Without addresses:
+•	Messages would have nowhere to go.
+•	Routers couldn't make forwarding decisions.
+•	Devices couldn't communicate.
+Every packet sent across a network contains:
+•	Source IP address
+•	Destination IP address
+Without these, communication would fail.
+________________________________________
+Real-World Example
+Suppose your laptop has this IP address:
+192.168.1.25
+Your home router might have:
+192.168.1.1
+When your laptop wants to access the Internet, it sends packets toward the router, which then forwards them toward their destination.
+________________________________________
+What Does an IP Address Look Like?
+The most common version today is IPv4.
+Example:
+192.168.1.25
+It consists of four numbers separated by periods.
+Each number ranges from:
+0–255
+Example:
+10.0.0.1
+
+172.16.5.22
+
+192.168.100.14
+
+8.8.8.8
+________________________________________
+Why Numbers?
+Humans prefer names.
+Computers prefer numbers.
+Imagine asking someone to locate:
+"The blue house beside the mango tree."
+That description can change.
+Now imagine giving GPS coordinates.
+Much more precise.
+IP addresses give computers precise destinations.
+________________________________________
+IP Address vs Domain Name
+These two are often confused.
+Domain Name	IP Address
+google.com	142.250.xxx.xxx
+youtube.com	142.xxx.xxx.xxx
+github.com	140.82.xxx.xxx
+Humans remember domain names.
+Computers communicate using IP addresses.
+DNS connects the two.
+________________________________________
+IP Address vs MAC Address
+Another common source of confusion.
+IP Address	MAC Address
+Logical address	Physical hardware address
+Can change	Usually stays with the network interface
+Used between networks	Used within the local network
+Assigned by network configuration	Assigned by the manufacturer
+Think of it this way:
+House Address → IP Address
+Person's Fingerprint → MAC Address
+We'll study MAC addresses in detail in a later chapter.
+________________________________________
+IPv4
+IPv4 stands for:
+Internet Protocol Version 4.
+It has been the backbone of the Internet for decades.
+Example:
+203.177.42.15
+Advantages:
+•	Simple
+•	Widely supported
+•	Easy to understand
+Limitation:
+There are only about 4.3 billion possible IPv4 addresses.
+When IPv4 was designed, engineers never imagined billions of smartphones, smart TVs, IoT devices, and cloud servers.
+Eventually, IPv4 addresses became scarce.
+________________________________________
+IPv6
+IPv6 is the newer version of the Internet Protocol.
+Example:
+2001:0db8:85a3:0000:0000:8a2e:0370:7334
+At first glance, it looks intimidating.
+Don't worry—we'll study IPv6 in a dedicated chapter.
+For now, remember:
+•	IPv4 uses four decimal numbers.
+•	IPv6 uses hexadecimal numbers separated by colons.
+•	IPv6 provides an enormous number of unique addresses.
+________________________________________
+Public vs Private IP Addresses
+Not every IP address can be used directly on the Internet.
+There are two main categories.
+Public IP Address
+A public IP address is reachable from the Internet.
+It is assigned by your Internet Service Provider (ISP).
+Example:
+203.177.42.15
+If someone on the Internet communicates with your home network, they usually communicate through your public IP address.
+________________________________________
+Private IP Address
+Private IP addresses are used inside local networks.
+Common ranges include:
+10.0.0.0 – 10.255.255.255
+
+172.16.0.0 – 172.31.255.255
+
+192.168.0.0 – 192.168.255.255
+You will commonly see addresses like:
+192.168.1.2
+
+192.168.1.10
+
+192.168.1.100
+These addresses are not directly reachable from the public Internet.
+________________________________________
+Real-Life Example
+Suppose your home has:
+•	Laptop
+•	Smartphone
+•	Tablet
+•	Smart TV
+•	Printer
+Each device receives its own private IP address.
+Your entire home network then shares a single public IP address provided by your ISP.
+In the next part of this chapter, you'll learn how this is possible using Network Address Translation (NAT).
+________________________________________
+Visual Illustration
+                Internet
+                    │
+          Public IP Address
+            203.177.42.15
+                    │
+             Home Router
+          ┌─────────┼─────────┐
+          │         │         │
+192.168.1.2 192.168.1.3 192.168.1.4
+ Laptop      Phone       TV
+________________________________________
+Practical Applications
+Understanding IP addresses is essential for:
+•	Configuring routers
+•	Troubleshooting networks
+•	Hosting servers
+•	Firewall configuration
+•	VPN deployment
+•	Ethical hacking
+•	Cloud networking
+•	Incident response
+________________________________________
+Case Study
+Problem
+An office computer couldn't access the Internet.
+Investigation
+The network administrator checked:
+•	Cable connection ✔
+•	Wi-Fi ✔
+•	IP address ✖
+The computer had no valid IP address.
+Solution
+The administrator renewed the IP configuration.
+The computer immediately regained Internet access.
+Lesson:
+Many connectivity problems begin with incorrect IP addressing.
+________________________________________
+Hands-On Lab
+Lab 3 – Find Your IP Address
+Objective
+Identify both your private and public IP addresses.
+Part A – Private IP
+Windows:
+ipconfig
+Linux/macOS:
+ip addr
+Write down:
+•	IPv4 Address
+•	Default Gateway
+•	Subnet Mask
+________________________________________
+Part B – Public IP
+Open your browser and visit a service that displays your public IP address.
+Compare it with your private IP.
+Questions:
+•	Are they the same?
+•	Why are they different?
+We'll answer that in Part 2.
+________________________________________
+Common Mistakes
+❌ Thinking every IP address is public.
+❌ Believing domain names and IP addresses are the same.
+❌ Confusing MAC addresses with IP addresses.
+❌ Assuming devices on different networks can always communicate directly.
+________________________________________
+Memory Tips
+IP Address
+The network address of a device.
+Public IP
+Visible to the Internet.
+Private IP
+Used inside local networks.
+IPv4
+Four numbers separated by dots.
+IPv6
+Longer hexadecimal addresses separated by colons.
+________________________________________
+Self-Assessment
+Can you answer these without looking?
+1.	Why does every device need an IP address?
+2.	What is the difference between a public and private IP address?
+3.	Why was IPv6 created?
+4.	How is an IP address different from a MAC address?
+5.	Why do computers use IP addresses instead of domain names?
+________________________________________
+Interview Preparation
+Beginner
+Question: What is an IP address?
+Why it's asked
+This is one of the most fundamental networking concepts.
+Ideal Answer
+An IP address is a logical numerical address assigned to a device on a network, allowing it to send and receive data.
+Difficulty: ⭐ 2/10
+________________________________________
+Intermediate
+Question: What's the difference between a public IP address and a private IP address?
+Difficulty: ⭐⭐⭐⭐ 4/10
+________________________________________
+What's Next?
+In Chapter 3 – Part 2, you'll learn:
+•	Why one public IP can serve an entire home.
+•	What NAT (Network Address Translation) is.
+•	How routers translate addresses.
+•	Static vs Dynamic IP addresses.
+•	DHCP basics.
+•	Why these concepts are essential for network security and Internet connectivity.
+ 
+Networking Fundamentals: From Zero to Professional Network Engineer
+Chapter 3 – IP Addresses
+Part 2 – NAT, DHCP, and Static vs. Dynamic IP Addresses
+________________________________________
+Learning Objectives
+By the end of this part, you will be able to:
+•	Explain why one public IP address can serve an entire home or office.
+•	Understand what Network Address Translation (NAT) is and why it exists.
+•	Differentiate between static and dynamic IP addresses.
+•	Understand the purpose of DHCP.
+•	Explain how a device receives an IP address when it joins a network.
+•	Recognize how these technologies support modern networking.
+Estimated Study Time: 3–4 hours
+Prerequisites:
+•	Chapter 1 – What Is a Computer Network?
+•	Chapter 2 – How the Internet Really Works
+•	Chapter 3 – Part 1
+________________________________________
+Review
+In Part 1, you learned:
+•	Every device needs an IP address.
+•	There are public and private IP addresses.
+•	IPv4 addresses are limited.
+•	IPv6 was introduced to help solve address exhaustion.
+But one important question remains:
+If your home has 15 devices, why does your ISP usually give you only one public IP address?
+The answer is Network Address Translation (NAT).
+________________________________________
+The Problem NAT Solves
+Imagine a family of five living in one house.
+The house has:
+•	One street address
+•	Five people living inside
+When someone sends a letter, the postal service only needs the house address.
+Once the letter arrives, the family knows who it belongs to.
+A home network works in a similar way.
+________________________________________
+What Is NAT?
+Definition
+Network Address Translation (NAT) is a process performed by a router that translates private IP addresses into a public IP address (and back again).
+This allows many devices on a private network to share a single public IP address.
+________________________________________
+Why Was NAT Created?
+IPv4 provides about 4.3 billion addresses.
+That sounded like a lot in the 1980s.
+Today we have:
+•	Smartphones
+•	Laptops
+•	Tablets
+•	Smart TVs
+•	Security cameras
+•	Smart speakers
+•	IoT devices
+•	Cloud servers
+Without NAT, IPv4 addresses would have been exhausted much sooner.
+________________________________________
+How NAT Works
+Imagine your home network:
+                 Internet
+                     │
+          Public IP: 203.177.42.15
+                     │
+               Home Router
+       ┌────────┼────────┬────────┐
+       │        │        │
+192.168.1.10 192.168.1.20 192.168.1.30
+ Laptop      Phone       Smart TV
+Each device has its own private IP address.
+To the Internet, however, they all appear to come from 203.177.42.15.
+The router keeps track of which device started each connection so it can send the responses back to the correct device.
+________________________________________
+Step-by-Step Example
+Suppose your laptop wants to visit example.com.
+Step 1
+Laptop sends:
+Source:
+192.168.1.10
+
+Destination:
+93.184.216.34
+________________________________________
+Step 2
+Router performs NAT.
+It changes the source address to:
+203.177.42.15
+Now the packet appears to come from your home's public IP address.
+________________________________________
+Step 3
+The website replies to:
+203.177.42.15
+________________________________________
+Step 4
+The router checks its NAT table and determines:
+"This response belongs to Laptop (192.168.1.10)."
+It forwards the packet to the laptop.
+The website never needs to know the laptop's private IP address.
+________________________________________
+NAT Table (Simplified)
+Private Device	Public Address
+192.168.1.10	203.177.42.15
+192.168.1.20	203.177.42.15
+192.168.1.30	203.177.42.15
+The router uses additional information, such as port numbers, to keep each connection separate. You'll learn about ports in a later chapter.
+________________________________________
+Advantages of NAT
+•	Conserves IPv4 addresses.
+•	Allows many devices to share one public IP.
+•	Hides private IP addresses from the Internet.
+•	Simplifies home and small business networking.
+________________________________________
+Limitations of NAT
+•	Adds some complexity to networking.
+•	Certain applications may require extra configuration (such as port forwarding).
+•	Does not replace a firewall or other security controls.
+________________________________________
+Static vs. Dynamic IP Addresses
+Not every IP address stays the same.
+There are two common assignment methods.
+Static IP Address
+A static IP address remains the same until it is manually changed.
+Examples of devices that often use static IPs:
+•	Servers
+•	Printers
+•	Network switches
+•	Routers
+•	Security cameras
+Advantages
+•	Predictable
+•	Easier to locate on the network
+•	Useful for hosting services
+Disadvantages
+•	Manual configuration
+•	More administrative effort
+________________________________________
+Dynamic IP Address
+A dynamic IP address is automatically assigned and may change over time.
+Most home devices use dynamic addresses.
+Examples:
+•	Smartphones
+•	Laptops
+•	Tablets
+These devices often receive their addresses automatically whenever they connect to the network.
+________________________________________
+What Is DHCP?
+Definition
+Dynamic Host Configuration Protocol (DHCP) is a network service that automatically assigns IP addresses and other network settings to devices.
+Without DHCP, you would have to manually configure every new device that joined the network.
+________________________________________
+Why DHCP Exists
+Imagine a company with 2,000 computers.
+Assigning IP addresses manually would be slow and error-prone.
+Instead, a DHCP server automatically provides:
+•	IP address
+•	Subnet mask
+•	Default gateway
+•	DNS server
+This makes network management much easier.
+________________________________________
+The DHCP Process (Simplified)
+When a new device joins the network:
+1. Device: "Does anyone have an IP address for me?"
+
+↓
+
+2. DHCP Server: "Yes, here's one."
+
+↓
+
+3. Device: "I'd like to use it."
+
+↓
+
+4. DHCP Server: "Approved."
+This exchange happens in just a few moments.
+________________________________________
+Real-World Example
+You arrive at a coffee shop and connect to its Wi-Fi.
+Within seconds:
+•	Your phone receives a private IP address.
+•	It learns the default gateway.
+•	It learns which DNS server to use.
+You don't have to enter these settings manually because DHCP does the work.
+________________________________________
+Practical Applications
+NAT and DHCP are used in:
+•	Homes
+•	Offices
+•	Universities
+•	Hotels
+•	Airports
+•	Coffee shops
+•	Data centers
+Almost every modern network uses DHCP, and most home networks also rely on NAT.
+________________________________________
+Case Study
+Problem
+A user reports that they cannot connect to the Internet.
+Investigation
+The administrator checks the device and finds it has an address beginning with:
+169.254.x.x
+This indicates the device did not receive a valid IP address from DHCP.
+Solution
+The administrator restarts the DHCP service and renews the device's IP lease.
+The device receives a proper address and connectivity is restored.
+________________________________________
+Hands-On Lab
+Lab 4 – Examine Your Network Configuration
+Objective
+Observe your current network settings and determine whether your IP address is static or dynamic.
+Windows
+Open Command Prompt:
+ipconfig /all
+Linux
+ip addr
+and
+ip route
+Record
+•	IPv4 Address
+•	Default Gateway
+•	DNS Server
+•	DHCP Enabled? (Yes/No)
+________________________________________
+Challenge
+1.	Disconnect from Wi-Fi.
+2.	Reconnect.
+3.	Check whether your IP address changes.
+4.	If it remains the same, discuss why that might happen (hint: DHCP leases often keep the same address for a period of time).
+________________________________________
+Common Mistakes
+❌ Believing NAT is a firewall.
+❌ Thinking every device needs its own public IP address.
+❌ Assuming a dynamic IP address changes every time you refresh a webpage.
+❌ Confusing DHCP with DNS.
+Remember:
+•	DHCP assigns IP addresses.
+•	DNS translates names into IP addresses.
+________________________________________
+Memory Tips
+NAT
+Many private addresses share one public address.
+DHCP
+Automatically assigns network settings.
+Static IP
+Stays the same.
+Dynamic IP
+Assigned automatically and may change.
+________________________________________
+Self-Assessment
+1.	Why is NAT important for IPv4?
+2.	What does DHCP do?
+3.	When would you choose a static IP address?
+4.	Can multiple devices share one public IP address? Why?
+5.	Why is NAT not considered a replacement for a firewall?
+________________________________________
+Interview Preparation
+Beginner
+Question: What is NAT?
+Ideal Answer:
+NAT is a router function that translates private IP addresses into a public IP address, allowing multiple devices to share a single public address.
+Difficulty: ⭐⭐ 2/10
+________________________________________
+Intermediate
+Question: What is the difference between DHCP and DNS?
+Ideal Answer:
+DHCP automatically assigns IP addresses and network settings, while DNS translates domain names into IP addresses.
+Difficulty: ⭐⭐⭐⭐ 4/10
+________________________________________
+Scenario Question
+A user reports that they cannot access any websites. Their computer has an IP address of 169.254.25.8.
+•	What is the likely problem?
+•	What steps would you take to troubleshoot it?
+________________________________________
+Certification Mapping
+Topics covered in this part commonly appear in:
+•	CompTIA Network+
+•	Cisco CCNA
+•	CompTIA Security+
+•	AWS Cloud Practitioner
+________________________________________
+Looking Ahead
+In Chapter 3 – Part 3, you'll learn about:
+•	Subnet Masks
+•	Network IDs
+•	Host IDs
+•	Why subnetting exists
+•	How computers determine whether another device is on the same network
+These concepts are among the most important in networking and are heavily tested in certifications and technical interviews.
+ 
+Networking Fundamentals: From Zero to Professional Network Engineer
+Chapter 3 – IP Addresses
+Part 3 – Subnet Masks, Network IDs, and Host IDs
+________________________________________
+Learning Objectives
+By the end of this part, you will be able to:
+•	Explain what a subnet mask is.
+•	Understand why subnetting exists.
+•	Distinguish between the Network ID and Host ID.
+•	Determine whether two devices are on the same network.
+•	Understand CIDR notation at a beginner level.
+•	Recognize why subnetting is important for performance and security.
+Estimated Study Time: 3–4 hours
+Prerequisites:
+•	Chapter 1 – What Is a Computer Network?
+•	Chapter 2 – How the Internet Really Works
+•	Chapter 3 – Parts 1 & 2
+________________________________________
+Chapter Review
+So far you've learned:
+•	Every device needs an IP address.
+•	Devices can have public or private IP addresses.
+•	NAT allows many devices to share one public IP.
+•	DHCP automatically assigns IP addresses.
+Now another question arises:
+How does your computer know whether another device is nearby on the same network or somewhere else on the Internet?
+The answer lies in the subnet mask.
+________________________________________
+The Problem
+Imagine a company with 5,000 computers.
+If every computer tried talking directly to every other computer, the network would become slow, inefficient, and difficult to manage.
+Instead, engineers divide large networks into smaller networks, called subnets.
+Think of it like organizing a city into neighborhoods rather than treating the entire city as one giant street.
+________________________________________
+What Is a Subnet?
+Definition
+A subnet (short for subnetwork) is a smaller network created by dividing a larger network.
+Instead of placing every device into one huge network, devices are grouped into logical sections.
+Examples:
+•	HR Department
+•	Finance Department
+•	Engineering Department
+•	Guest Wi-Fi
+•	Security Cameras
+Each can have its own subnet.
+________________________________________
+Why Create Subnets?
+Subnetting improves:
+•	Performance
+•	Security
+•	Organization
+•	Troubleshooting
+•	Scalability
+Instead of broadcasting information to thousands of devices, communication stays within the appropriate subnet whenever possible.
+________________________________________
+Analogy
+Imagine a university.
+Without departments:
+Everyone works in one enormous office.
+Finding the correct professor would be chaotic.
+Instead, the university has:
+•	Engineering Building
+•	Medical Building
+•	Business Building
+•	Library
+Each building is easier to manage.
+Subnets work the same way.
+________________________________________
+What Is a Subnet Mask?
+Definition
+A subnet mask is a number that tells a computer:
+Which part of an IP address identifies the network, and which part identifies the individual device (host).
+Example:
+IP Address
+192.168.1.25
+
+Subnet Mask
+255.255.255.0
+The subnet mask acts like a divider.
+________________________________________
+Network ID vs. Host ID
+Every IPv4 address has two parts:
+Network Portion | Host Portion
+The subnet mask determines where the split occurs.
+Example:
+IP Address
+
+192.168.1.25
+
+Subnet Mask
+
+255.255.255.0
+Result:
+Network ID
+192.168.1
+
+Host ID
+25
+This means:
+The device belongs to network:
+192.168.1.0
+and its unique identifier within that network is:
+25
+________________________________________
+Real-World Example
+Consider three computers:
+Device	IP Address
+PC A	192.168.1.10
+PC B	192.168.1.25
+PC C	192.168.1.200
+Subnet Mask:
+255.255.255.0
+All three belong to:
+192.168.1.0
+Therefore, they are on the same subnet.
+________________________________________
+Now consider another computer:
+192.168.2.10
+Notice the third number changed.
+This computer belongs to a different network.
+Communication between these networks usually requires a router.
+________________________________________
+Visual Illustration
+Subnet A
+
+192.168.1.0/24
+
+ ┌─────────────┐
+ │ Laptop      │
+ │192.168.1.10 │
+ └─────────────┘
+
+ ┌─────────────┐
+ │ Phone       │
+ │192.168.1.20 │
+ └─────────────┘
+
+ ┌─────────────┐
+ │ Printer     │
+ │192.168.1.50 │
+ └─────────────┘
+
+
+        │
+     Router
+        │
+
+
+Subnet B
+
+192.168.2.0/24
+
+ ┌─────────────┐
+ │ Server      │
+ │192.168.2.15 │
+ └─────────────┘
+________________________________________
+CIDR Notation
+You may see subnet masks written differently.
+Instead of:
+255.255.255.0
+You might see:
+/24
+This is called CIDR notation.
+Examples:
+CIDR	Subnet Mask
+/24	255.255.255.0
+/16	255.255.0.0
+/8	255.0.0.0
+For now, simply remember:
+/24
+
+=
+
+255.255.255.0
+You'll learn how CIDR works mathematically in the subnetting chapter.
+________________________________________
+Why Does Your Computer Need the Subnet Mask?
+Suppose your computer wants to send data to:
+192.168.1.50
+It compares:
+Its own IP:
+192.168.1.25
+Target IP:
+192.168.1.50
+Subnet Mask:
+255.255.255.0
+Result:
+Both devices belong to the same network.
+Therefore:
+Your computer sends the data directly on the local network.
+________________________________________
+Now imagine the destination is:
+192.168.2.50
+Your computer recognizes that this address belongs to a different network.
+Instead of sending directly, it forwards the packet to the default gateway (router).
+The router then forwards the packet to the correct network.
+________________________________________
+Why Is This Important?
+Without subnet masks:
+•	Devices wouldn't know where local networks end.
+•	Routers couldn't efficiently forward traffic.
+•	Large networks would become slow and difficult to manage.
+Subnetting is one of the most important concepts in networking.
+________________________________________
+Security Benefits
+Subnetting isn't only about organization.
+It also improves security.
+Example:
+Instead of placing everyone on one network:
+Employees
+Guests
+Servers
+Security Cameras
+You separate them.
+Result:
+If a guest device becomes infected with malware, it is much harder for the attack to spread to sensitive systems.
+This practice is often combined with VLANs and firewall rules, which you'll learn later in the course.
+________________________________________
+Practical Applications
+Subnetting is used in:
+•	Enterprise networks
+•	Universities
+•	Hospitals
+•	Government agencies
+•	Cloud environments
+•	Data centers
+Every professional network uses subnetting.
+________________________________________
+Case Study
+Problem
+A company placed:
+•	Employee laptops
+•	Guest Wi-Fi
+•	Servers
+all on the same subnet.
+An infected guest laptop scanned every server on the network.
+Solution
+The network administrator created separate subnets and applied firewall rules between them.
+Result
+Guest devices could access the Internet but could not directly communicate with internal servers, greatly reducing the risk of lateral movement by attackers.
+________________________________________
+Hands-On Lab
+Lab 5 – Identify Devices on Your Network
+Objective
+Determine whether devices are on the same subnet.
+Example
+Device A:
+192.168.1.25
+Device B:
+192.168.1.60
+Subnet Mask:
+255.255.255.0
+Question:
+Are they on the same subnet?
+Answer: Yes.
+________________________________________
+Now try these yourself:
+Exercise 1
+Device A:
+192.168.10.20
+Device B:
+192.168.10.150
+Mask:
+255.255.255.0
+Same subnet?
+________________________________________
+Exercise 2
+Device A:
+192.168.5.25
+Device B:
+192.168.6.30
+Mask:
+255.255.255.0
+Same subnet?
+________________________________________
+Challenge
+On your own computer:
+•	Find your IP address.
+•	Find your subnet mask.
+•	Find another device connected to your home network (such as your phone or another computer).
+•	Compare the network portions of both addresses.
+•	Determine whether they are on the same subnet.
+________________________________________
+Common Mistakes
+❌ Thinking the subnet mask is optional.
+❌ Assuming devices with similar IP addresses are always on the same subnet.
+❌ Confusing the subnet mask with the default gateway.
+❌ Believing routers are unnecessary between different networks.
+________________________________________
+Memory Tips
+Subnet
+A smaller network inside a larger network.
+Subnet Mask
+Divides the network portion from the host portion.
+Network ID
+Identifies the network.
+Host ID
+Identifies the individual device.
+________________________________________
+Self-Assessment
+1.	What is the purpose of a subnet mask?
+2.	What is the difference between a Network ID and a Host ID?
+3.	Why are routers needed between different subnets?
+4.	What are two advantages of subnetting?
+5.	What does /24 represent?
+________________________________________
+Interview Preparation
+Beginner
+Question:
+What is a subnet mask?
+Ideal Answer:
+A subnet mask identifies which portion of an IP address represents the network and which portion represents the host, helping devices determine whether a destination is on the local network or a remote network.
+Difficulty: ⭐⭐⭐ 3/10
+________________________________________
+Intermediate
+Question:
+Why do companies divide their networks into multiple subnets?
+Ideal Answer:
+To improve performance, simplify management, enhance security, reduce unnecessary broadcast traffic, and isolate different departments or services.
+Difficulty: ⭐⭐⭐⭐⭐ 5/10
+________________________________________
+Scenario Question
+Your company has placed employees, guests, and servers on the same subnet. What risks does this create, and how would you redesign the network?
+________________________________________
+Certification Mapping
+This chapter introduces concepts tested in:
+•	CompTIA Network+
+•	Cisco CCNA
+•	CompTIA Security+
+•	AWS Certified Cloud Practitioner
+________________________________________
+Chapter 3 Summary
+Congratulations! You now understand:
+•	What IP addresses are.
+•	The difference between public and private IP addresses.
+•	NAT and why it exists.
+•	DHCP and automatic IP assignment.
+•	Static vs. dynamic IP addresses.
+•	Subnet masks.
+•	Network IDs and Host IDs.
+•	Why subnetting is essential for both networking and security.
+These concepts form the foundation for nearly everything you'll study in networking and cybersecurity.
+________________________________________
+Looking Ahead
+Chapter 4 – The OSI Model introduces one of the most important frameworks in networking.
+You'll learn:
+•	Why networking is divided into layers.
+•	The seven OSI layers.
+•	What each layer does.
+•	Which protocols operate at each layer.
+•	How data moves through the layers.
+•	Why the OSI model is invaluable for troubleshooting and interviews.
+The OSI model is one of the most frequently discussed topics in networking interviews and certifications, making it a cornerstone of your journey toward becoming a Network Security Engineer.
+ 
